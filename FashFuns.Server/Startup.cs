@@ -94,6 +94,7 @@ namespace FashFuns.Server
 
             services.AddTransient<IProductsRepositoriesFactory, ProductsRepositoriesFactory>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
+            services.AddTransient<IProductsService, ProductsService>();
 
             services.Add(new ServiceDescriptor(typeof(ISqlDbContext),
                 t => new SqlDbContext(new FashFunsDbContext(t.GetService<DbContextOptions<FashFunsDbContext>>())), ServiceLifetime.Transient)

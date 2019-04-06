@@ -18,13 +18,31 @@ namespace FashFuns.Server.Controllers
     [AssignControllerRoute(WebApiEnvironmnet.Current, WebApiVersion.ApiVersion1, ApplicationSegments.Products)]
     public class ProductController : WebApiControllerBase
     {
-        private IShoppingCartService _shoppingCartService;
+        private readonly IShoppingCartService _shoppingCartService;
+        private readonly IProductsService _productsService;
 
         public ProductController(
             IShoppingCartService shoppingCartService,
+            IProductsService productsService,
             IResponseFactory responseFactory) : base(responseFactory)
         {
             _shoppingCartService = shoppingCartService;
+            _productsService = productsService;
+        }
+
+        [AssignActionRoute(ProductSegments.GET_PRODUCTS)]
+        public async Task<IActionResult> GetProducts()
+        {
+            try
+            {
+                var products = await _productsService.GetProducts();
+                return Ok(products);
+            }
+            catch (Exception exc)
+            {
+                Log.Error(exc.Message);
+                return BadRequest(ErrorResponseBody(exc.Message, HttpStatusCode.BadRequest));
+            }
         }
 
         [HttpPost]

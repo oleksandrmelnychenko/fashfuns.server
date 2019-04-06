@@ -5,5 +5,8 @@
         public const string CHANGE_SHOPPING_CART = "change/shopping/cart";
 
         public const string GET_SHOPPING_CART = "get/shopping/cart/{userId}";
+
+        public const string GET_PRODUCTS = "get";
+
     }
 }

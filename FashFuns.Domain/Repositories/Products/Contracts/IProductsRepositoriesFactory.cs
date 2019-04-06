@@ -5,5 +5,7 @@ namespace FashFuns.Domain.Repositories.Products.Contracts
     public interface IProductsRepositoriesFactory
     {
         IShoppingCartRepository NewShoppingCartRepository(IDbConnection connection);
+
+        IProductsRepository NewProductsRepository(IDbConnection connection);
     }
 }

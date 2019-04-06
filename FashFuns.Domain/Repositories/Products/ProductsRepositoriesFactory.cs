@@ -8,6 +8,9 @@ namespace FashFuns.Domain.Repositories.Products
 {
     public class ProductsRepositoriesFactory : IProductsRepositoriesFactory
     {
+        public IProductsRepository NewProductsRepository(IDbConnection connection) =>
+            new ProductRepository(connection);
+
         public IShoppingCartRepository NewShoppingCartRepository(IDbConnection connection) =>
             new ShoppingCartRepository(connection);
     }
