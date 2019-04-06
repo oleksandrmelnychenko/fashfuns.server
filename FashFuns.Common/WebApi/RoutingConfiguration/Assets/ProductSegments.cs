@@ -4,6 +4,6 @@
     {
         public const string CHANGE_SHOPPING_CART = "change/shopping/cart";
 
-        public const string GET_SHOPPING_CART = "get/shopping/cart";
+        public const string GET_SHOPPING_CART = "get/shopping/cart/{userId}";
     }
 }

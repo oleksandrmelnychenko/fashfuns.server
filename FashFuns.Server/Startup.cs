@@ -12,8 +12,12 @@ using FashFuns.Domain.DataSourceAdapters.SQL.Contracts;
 using FashFuns.Domain.DbConnectionFactory;
 using FashFuns.Domain.Repositories.Identity;
 using FashFuns.Domain.Repositories.Identity.Contracts;
+using FashFuns.Domain.Repositories.Products;
+using FashFuns.Domain.Repositories.Products.Contracts;
 using FashFuns.Services.IdentityServices;
 using FashFuns.Services.IdentityServices.Contracts;
+using FashFuns.Services.ProductServices;
+using FashFuns.Services.ProductServices.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -87,6 +91,9 @@ namespace FashFuns.Server
             services.AddTransient<IDbConnectionFactory, DbConnectionFactory>();
             services.AddTransient<ISqlDbContext, SqlDbContext>();
             services.AddTransient<ISqlContextFactory, SqlContextFactory>();
+
+            services.AddTransient<IProductsRepositoriesFactory, ProductsRepositoriesFactory>();
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
 
             services.Add(new ServiceDescriptor(typeof(ISqlDbContext),
                 t => new SqlDbContext(new FashFunsDbContext(t.GetService<DbContextOptions<FashFunsDbContext>>())), ServiceLifetime.Transient)
