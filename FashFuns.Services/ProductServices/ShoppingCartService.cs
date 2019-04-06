@@ -37,8 +37,11 @@ namespace FashFuns.Services.ProductServices
                         details.OrderItems = shoppingCart.OrderItems;
 
                         details.Shipping = 30;
-                        details.ItemTotal = shoppingCart.OrderItems.Sum(x => (decimal)x.Qty * x.Product.Price);
-                        details.OrderTotal = details.ItemTotal + details.Shipping;
+                        details.TotalPrice = shoppingCart.OrderItems.Sum(x => (decimal)x.Qty * x.Product.Price);
+                        details.OrderTotalPrice = details.TotalPrice + details.Shipping;
+                        details.ProductCount = shoppingCart.OrderItems.Count;
+                        details.Id = shoppingCart.Id;
+
                     }
 
 

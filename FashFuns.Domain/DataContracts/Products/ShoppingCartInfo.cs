@@ -12,11 +12,15 @@ namespace FashFuns.Domain.DataContracts.Products
             OrderItems = new List<OrderItem>();
         }
 
-        public decimal ItemTotal { get; set; }
+        public long Id { get; set; }
+
+        public int ProductCount { get; set; }
+
+        public decimal TotalPrice { get; set; }
 
         public decimal Shipping { get; set; }
 
-        public decimal OrderTotal { get; set; }
+        public decimal OrderTotalPrice { get; set; }
 
         public virtual IEnumerable<OrderItem> OrderItems { get; set; }
     }
