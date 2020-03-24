@@ -110,6 +110,12 @@ namespace FashFuns.Services.IdentityServices
                 using (IDbConnection connection = _connectionFactory.NewSqlConnection())
                 {
                     IIdentityRepository repository = _identityRepositoriesFactory.NewIdentityRepository(connection);
+                    
+                    var exist = repository.GetUserByEmail(authenticateDataContract.Email);
+                    if (exist != null) {
+                        throw new ArgumentException(IdentityValidationMessages.ACCOUNT_ALREADY_EXIST);
+                    }
+
                     IIdentityRolesRepository rolesRepository =
                         _identityRepositoriesFactory.NewIdentityRolesRepository(connection);
 

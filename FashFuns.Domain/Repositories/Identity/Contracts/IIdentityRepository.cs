@@ -6,6 +6,8 @@ namespace FashFuns.Domain.Repositories.Identity.Contracts
     {
         UserIdentity GetUserByEmail(string email);
 
+        void DeleteUserById(long userId);
+
         int UpdateUserPassword(UserIdentity user);
 
         long UpdateUserExperationDate(long userId, bool isExpired);

@@ -8,5 +8,6 @@ namespace FashFuns.Domain.Repositories.Products.Contracts
     public interface IShoppingCartRepository
     {
         ShoppingCart GetShoppingCartByUser(long userId);
+        void TestDapper();
     }
 }

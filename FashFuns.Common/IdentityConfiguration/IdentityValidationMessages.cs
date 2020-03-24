@@ -5,6 +5,8 @@ namespace FashFuns.Common.IdentityConfiguration
     {
         public const string EMAIL_INVALID = "Email is not valid";
 
+        public const string ACCOUNT_ALREADY_EXIST = "Account already exist.";
+
         public const string TOKEN_INVALID = "Invalid token";
 
         public const string PASSWORD_EXPIRED = "Your password has expired, please update it now";

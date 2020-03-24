@@ -4,6 +4,7 @@ using System.Data;
 using System.Text;
 using Dapper;
 using FashFuns.Domain.DataContracts.Products;
+using FashFuns.Domain.Entities.Identity;
 using FashFuns.Domain.Entities.Products;
 using FashFuns.Domain.Repositories.Products.Contracts;
 
@@ -50,6 +51,33 @@ namespace FashFuns.Domain.Repositories.Products
                 );
 
             return cart;
+        }
+
+        public void TestDapper() {
+            OrderItem orderItem = default;
+            
+            var tt = _connection.Query<OrderItem, Product, Order, OrderItem>(
+                "SELECT * from [OrderItems] " +
+                "left join [Products] on [OrderItems].ProductId = [Products].Id " +
+                "left join [Orders] on [OrderItems].OrderId = [Orders].Id",
+                (item, product, order) => {
+                    if (orderItem == null) {
+                        orderItem = item;
+                    }
+
+                    if (item != null) {
+                        if (product != null) {
+                            item.Product = product;
+                        }
+
+                        if (order != null) {
+                            item.Order = order;
+                        }
+                    }
+
+                    return item;
+                }
+                );
         }
     }
 }

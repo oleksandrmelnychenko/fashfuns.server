@@ -29,6 +29,8 @@ namespace FashFuns.Services.ProductServices
                     IShoppingCartRepository repository = _productRepositoriesFactory.NewShoppingCartRepository(connection);
 
                     ShoppingCart shoppingCart = repository.GetShoppingCartByUser(userId);
+                    // test
+                    repository.TestDapper();
 
                     var details = new ShoppingCartInfo();
 
